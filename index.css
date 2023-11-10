@@ -181,6 +181,7 @@ ion-icon {
 .modal-container {
     position: relative;
     margin: 0 auto;
+    padding: 20px 0;
     font-family: Verdana;
     font-size: 18px;
     font-weight: 700;
@@ -188,6 +189,10 @@ ion-icon {
     background-color: #ffffff;
     z-index: 10;
     box-shadow: 0px 15px 15px 5px rgba(0,0,0,0.1);
+}
+
+.modal-container h4 {
+    text-align: center;
 }
 
 #payment-form {
@@ -208,4 +213,8 @@ ion-icon {
     line-height: 31.119px;
     border-radius: 3.89px;
     border: 1.297px solid #757575;
+}
+
+#complete-payment {
+    margin-top: 10px;
 }
