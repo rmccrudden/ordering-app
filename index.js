@@ -85,6 +85,7 @@ function calculateTotalPrice() {
     return totalPrice.toFixed(2)
 }
 
+// checks the calculated price, then checks if the completeBtnContainer is falsy, if so creates this and the button as a child element. 
 function checkoutBtn() {
   const totalPrice = calculateTotalPrice()
   const completeBtnContainer = document.querySelector(".complete-btn-container")
