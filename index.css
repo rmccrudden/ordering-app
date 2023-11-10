@@ -179,6 +179,8 @@ ion-icon {
 
 /* Modal */
 .modal-container {
+    position: relative;
+    margin: 0 auto;
     font-family: Verdana;
     font-size: 20px;
     font-weight: 700;
