@@ -193,6 +193,7 @@ ion-icon {
 
 .modal-container h4 {
     text-align: center;
+    margin: 10px 0;
 }
 
 #payment-form {
