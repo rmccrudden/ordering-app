@@ -128,7 +128,7 @@ function getOrderTotal() {
     }
 }
 
-// fucntion to handle what happens when the complete order button is clicked. 
+// function to handle what happens when the complete order button is clicked. 
 // boolean variable is flipped from false to true when the button is clicked, which in turn updated the hiddenClass variable to be blank and displays the payment modal. 
 function handleCompleteOrderClick() {
     let hiddenClass = 'hidden'
