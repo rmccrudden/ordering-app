@@ -99,6 +99,7 @@ function checkoutBtn() {
       completeOrderBtn.textContent = "Complete Order"
       completeOrderBtn.classList.add("green-btn")
       completeOrderBtn.id = "completeBtn"
+      completeOrderBtn.dataset.complete = "complete" 
       div.classList.add("complete-btn-container")
       document.getElementById('order-summary').append(div)
       div.appendChild(completeOrderBtn)
