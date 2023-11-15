@@ -1,6 +1,7 @@
 import menuArray from '/data.js'
 let ordersArr = []
-
+let displayPaymentModal = false
+const paymentModal = document.getElementById('checkout-modal')
 //adds event listeners to buttons using data attributes
 document.addEventListener(`click`, (e) => {
     if (e.target.dataset.add) {
@@ -13,6 +14,7 @@ document.addEventListener(`click`, (e) => {
         }
     else if (e.target.dataset.complete) {
         handleCompleteOrderClick(e.target.dataset.complete)
+        displayPaymentModal = !displayPaymentModal
     }
 })
 
@@ -126,23 +128,30 @@ function getOrderTotal() {
     }
 }
 
+// fucntion to handle what happens when the complete order button is clicked. 
+// boolean variable is flipped from false to true when the button is clicked, which in turn updated the hiddenClass variable to be blank and displays the payment modal. 
 function handleCompleteOrderClick() {
-    console.log("Complete order Clicked")
-    displayPaymentModal()
-}
+    let hiddenClass = 'hidden'
 
-function displayPaymentModal() {
-    return `
-    <div class="modal-container hidden">
-        <h4>Enter Payment Details</h4>
-            <form id="payment-form">
-                <input name="name" placeholder="Enter your name" type="text" /> 
-                <input name="name" placeholder="Enter card number" type="text" /> 
-                <input name="name" placeholder="Enter CVV number" type="text" /> 
-            </form>
-            <button id="complete-payment" class="green-btn">Pay Now</button>
+   if(!displayPaymentModal) {
+    hiddenClass = ''
+   }
+    let paymentHtml = `
+    <div class="modal-window" data-modal='modal' ${hiddenClass}>
+    <div class="modal-wrapper" >
+        <div class="modal-container ">
+            <h4>Enter Payment Details</h4>
+                <form id="payment-form">
+                    <input name="name" placeholder="Enter your name" type="text" /> 
+                    <input name="card" placeholder="Enter card number" type="text" /> 
+                    <input name="cvv" placeholder="Enter CVV number" type="text" /> 
+                </form>
+                <button id="complete-payment" class="green-btn">Pay Now</button>
+        </div>
+    </div>
     </div>
     `
+    paymentModal.innerHTML = paymentHtml
 }
 
 // orderSummary() returns the HTML template to be populated with order items when added

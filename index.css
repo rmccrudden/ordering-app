@@ -178,7 +178,16 @@ ion-icon {
 }
 
 /* Modal */
-#checkout-modal {
+.modal-window {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height:100%;
+    background:rgba(0, 0, 0, 0.7)
+}
+
+.modal-wrapper {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -195,7 +204,7 @@ ion-icon {
     font-weight: 700;
     width: 80%;
     background-color: #ffffff;
-    z-index: 10;
+    z-index: 999;
     box-shadow: 0px 15px 15px 5px rgba(0,0,0,0.1);
 }
 
