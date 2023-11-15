@@ -99,7 +99,7 @@ function checkoutBtn() {
       completeOrderBtn.textContent = "Complete Order"
       completeOrderBtn.classList.add("green-btn")
       completeOrderBtn.id = "completeBtn"
-      completeOrderBtn.dataset.complete = "complete" 
+      completeOrderBtn.dataset.complete = "complete" //Adding a data attribute for the event listener when creating the button
       div.classList.add("complete-btn-container")
       document.getElementById('order-summary').append(div)
       div.appendChild(completeOrderBtn)
@@ -128,6 +128,21 @@ function getOrderTotal() {
 
 function handleCompleteOrderClick() {
     console.log("Complete order Clicked")
+    displayPaymentModal()
+}
+
+function displayPaymentModal() {
+    return `
+    <div class="modal-container hidden">
+        <h4>Enter Payment Details</h4>
+            <form id="payment-form">
+                <input name="name" placeholder="Enter your name" type="text" /> 
+                <input name="name" placeholder="Enter card number" type="text" /> 
+                <input name="name" placeholder="Enter CVV number" type="text" /> 
+            </form>
+            <button id="complete-payment" class="green-btn">Pay Now</button>
+    </div>
+    `
 }
 
 // orderSummary() returns the HTML template to be populated with order items when added
