@@ -11,6 +11,9 @@ document.addEventListener(`click`, (e) => {
         handleRemoveClick(e.target.dataset.remove)
         runOrderCalls()
         }
+    else if (e.target.dataset.complete) {
+        handleCompleteOrderClick(e.target.dataset.complete)
+    }
 })
 
 function runOrderCalls() {
@@ -120,6 +123,10 @@ function getOrderTotal() {
     else {
         totalPriceEl.textContent = `$0`
     }
+}
+
+function handleCompleteOrderClick() {
+    console.log("Complete irder Clicked")
 }
 
 // orderSummary() returns the HTML template to be populated with order items when added
