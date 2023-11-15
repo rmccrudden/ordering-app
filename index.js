@@ -99,6 +99,7 @@ function checkoutBtn() {
       completeOrderBtn.textContent = "Complete Order"
       completeOrderBtn.classList.add("green-btn")
       completeOrderBtn.id = "completeBtn"
+      completeOrderBtn.dataset = "complete" 
       div.classList.add("complete-btn-container")
       document.getElementById('order-summary').append(div)
       div.appendChild(completeOrderBtn)
@@ -126,7 +127,7 @@ function getOrderTotal() {
 }
 
 function handleCompleteOrderClick() {
-    console.log("Complete irder Clicked")
+    console.log("Complete order Clicked")
 }
 
 // orderSummary() returns the HTML template to be populated with order items when added
