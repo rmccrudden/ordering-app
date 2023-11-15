@@ -16,6 +16,11 @@ document.addEventListener(`click`, (e) => {
         handleCompleteOrderClick(e.target.dataset.complete)
         displayPaymentModal = !displayPaymentModal
     }
+    else if (e.target.dataset.close) {
+        handleCompleteOrderClick(e.target.dataset.close)
+        displayPaymentModal = !displayPaymentModal //resets the boolean variable displalPaymentModal to false after closing to 
+        //prevent the Complete Order button having to be clicked twice to flip the boolean to allow the modal to be displayed again
+    }
 })
 
 function runOrderCalls() {
@@ -139,6 +144,7 @@ function handleCompleteOrderClick() {
     let paymentHtml = `
     <div class="modal-window" data-modal='modal' ${hiddenClass}>
     <div class="modal-wrapper" >
+    <ion-icon name="close-circle" data-close="close" class="modal-close-icon"></ion-icon>
         <div class="modal-container ">
             <h4>Enter Payment Details</h4>
                 <form id="payment-form">

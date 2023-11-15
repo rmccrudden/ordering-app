@@ -208,6 +208,14 @@ ion-icon {
     box-shadow: 0px 15px 15px 5px rgba(0,0,0,0.1);
 }
 
+.modal-close-icon {
+    position: absolute;
+    left: 85%;
+    z-index: 9999;
+    font-size: 40px;
+    top: -7%;
+}
+
 .modal-container h4 {
     text-align: center;
     margin: 10px 0;
