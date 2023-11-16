@@ -111,8 +111,6 @@ function handleAddClick(menuItemId) {
             price: menuArray[menuItemId].price
         })
 
-        console.log(ordersArr)
-
     //checking there is an object to push, if not terminates
     // if (menuItemObj) {
     // ordersArr.push(menuItemObj)
