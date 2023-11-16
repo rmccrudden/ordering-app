@@ -58,8 +58,11 @@ function updateOrder() {
         return `        
         <div class="order-item">
             <h4 class="order-item-title">${orderItem.name}</h4>
-            <span class="remove-order-item"
-            data-remove=${orderItem.id}>remove</span>
+            <ion-icon class="quantity-update" name="remove-circle-outline"
+            data-remove=${orderItem.id}></ion-icon>
+            <span>${orderItem.quantity}</span>
+            <ion-icon class="quantity-update" name="add-circle-outline" 
+            data-add=${orderItem.id}></ion-icon>
             <span class="order-item-price">&dollar;${(orderItem.price * orderItem.quantity).toFixed(2)}</span>
         </div>
         `
@@ -69,24 +72,38 @@ function updateOrder() {
 
 //function handleRemoveClick() removes an item from the ordersArr using the splice method(). This does mutate the original array. 
 function handleRemoveClick(orderItemId) {
-    const itemIndex = ordersArr.findIndex((orderItem) => orderItemId === orderItem.id.toString());
-
+    const orderItemObj = ordersArr.filter(orderItem => orderItem.id === +orderItemId)[0]
+    orderItemObj.quantity--
+    const itemIndex = ordersArr.findIndex(orderItem => orderItem.quantity === 0)
     // !== -1 means a value has been found
-    if (itemIndex !== -1) {
+    if (itemIndex >= 0) {
         ordersArr.splice(itemIndex, 1); // Remove the item from the order
     }
 }
 
+//COPY OF function handleRemoveClick() removes an item from the ordersArr using the splice method(). This does mutate the original array. 
+//Can reuse with different event handler to remove entire item and possibly order
+// function handleRemoveClick(orderItemId) {
+//     const itemIndex = ordersArr.findIndex((orderItem) => orderItemId === orderItem.id.toString());
+
+//     // !== -1 means a value has been found
+//     if (itemIndex !== -1) {
+//         ordersArr.splice(itemIndex, 1); // Remove the item from the order
+//     }
+// }
+
+
+
 // function handleAddClick() handles checking if item matches id on menuArray, then pushes to ordersArr
 function handleAddClick(menuItemId) {
-    const menuItemObj = menuArray.filter(function(menuItem) {
-        // + symbol is short hand for outputting a sting so data types are the same. Refactored from using the toString() method
-        return +menuItemId === menuItem.id
-    })[0]
+    const menuItemObj = ordersArr.filter(orderItem => orderItem.id === +menuItemId)
+    //     // + symbol is short hand for outputting a sting so data types are the same. Refactored from using the toString() method
+    //     return +menuItemId === menuItem.id
+    // })[0]
 
     //using a ternary operator to check the length of ordersArr. Checks if the ordersArr is truthy, then increment the quantity,
     //or if it's empty i,e. falsy, push the matching object with a quantity of 1.  
-    ordersArr.length ? ordersArr[0].quantity++
+    menuItemObj.length ? menuItemObj[0].quantity++
         : ordersArr.push({
             id: +menuItemId,
             quantity: 1,

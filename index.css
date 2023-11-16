@@ -112,10 +112,16 @@ ion-icon {
     flex: 20%;
 }
 
+.quantity-update {
+    font-size: 25px;
+    margin: 0 10px;
+}
+
 .remove-order-item {
     color: #8B8B8B;
     flex-basis: 20%;
     text-align: right;
+    cursor: default;
 }
 
 .order-item-price {
