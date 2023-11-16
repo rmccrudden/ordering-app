@@ -52,6 +52,7 @@ const menuOption = menuArray.map(function(menuItem) {
 return menuOption
 }
 
+// Adds the order items to the item summary. Originally all on single lines, refactored to provide a counter of each item.
 function updateOrder() {
         const orderItems = ordersArr.map(function(orderItem) {
         return `        
@@ -59,14 +60,14 @@ function updateOrder() {
             <h4 class="order-item-title">${orderItem.name}</h4>
             <span class="remove-order-item"
             data-remove=${orderItem.id}>remove</span>
-            <span class="order-item-price">&dollar;${orderItem.price}</span>
+            <span class="order-item-price">&dollar;${(orderItem.price * orderItem.quantity).toFixed(2)}</span>
         </div>
         `
     }).join('')
     document.getElementById("added-items").innerHTML = orderItems
 }
 
-//function removeItemFromOrder() removes an item from the ordersArr using the splice method(). This does mutate the original array. 
+//function handleRemoveClick() removes an item from the ordersArr using the splice method(). This does mutate the original array. 
 function handleRemoveClick(orderItemId) {
     const itemIndex = ordersArr.findIndex((orderItem) => orderItemId === orderItem.id.toString());
 
@@ -76,26 +77,40 @@ function handleRemoveClick(orderItemId) {
     }
 }
 
-// function addToOrder handles checking if item matches id on menuArray, then pushes to ordersArr
+// function handleAddClick() handles checking if item matches id on menuArray, then pushes to ordersArr
 function handleAddClick(menuItemId) {
     const menuItemObj = menuArray.filter(function(menuItem) {
-        // + is outputting a sting so data types are the same. Refactored from toString() method
+        // + symbol is short hand for outputting a sting so data types are the same. Refactored from using the toString() method
         return +menuItemId === menuItem.id
     })[0]
+
+    //using a ternary operator to check the length of ordersArr. Checks if the ordersArr is truthy, then increment the quantity,
+    //or if it's empty i,e. falsy, push the matching object with a quantity of 1.  
+    ordersArr.length ? ordersArr[0].quantity++
+        : ordersArr.push({
+            id: +menuItemId,
+            quantity: 1,
+            name: menuArray[menuItemId].name,
+            price: menuArray[menuItemId].price
+        })
+
+        console.log(ordersArr)
+
     //checking there is an object to push, if not terminates
-    if (menuItemObj) {
-    ordersArr.push(menuItemObj)
-    }
+    // if (menuItemObj) {
+    // ordersArr.push(menuItemObj)
+    // }
 }
 
 function calculateTotalPrice() {
     const totalPrice = ordersArr.reduce((total, orderItem) => {
-        return total + orderItem.price
+        return total + (orderItem.price * orderItem.quantity)
     }, 0)
     return totalPrice.toFixed(2)
 }
 
-// checks the calculated price, then checks if the completeBtnContainer is falsy, if so creates this and the button as a child element. 
+// checks the calculated price, then checks if the completeBtnContainer is falsy i.e. doesn't exist, if so creates 
+// this and the button as a child element. 
 function checkoutBtn() {
   const totalPrice = calculateTotalPrice()
   const completeBtnContainer = document.querySelector(".complete-btn-container")
