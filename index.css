@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Smythe&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;700&family=Smythe&display=swap');
 
 html {
     background-color: #cdcdcd;
@@ -13,7 +13,7 @@ html {
 
 body {
     margin: 0;
-    font-family: Smythe;  
+    font-family: Nunito, Verdana, Geneva, Tahoma, sans-serif;  
     font-weight: 400;
 } 
 
@@ -76,7 +76,8 @@ p.menu-item-ingredients {
 
 span.menu-item-price, .order-item-price {
     color: #000;
-    font-size: 20px;
+    font-size: 18px;
+    font-weight: 500;
     line-height: 24px; /* 120% */
 }
 
@@ -109,12 +110,23 @@ ion-icon {
 
 .order-item-title {
     margin-right: 15px;
-    flex: 20%;
+    flex-basis: 33%;
+    font-weight: 500;
+}
+
+.quantity-wrapper {
+    display: flex;
+    line-height: 1.5em;
 }
 
 .quantity-update {
     font-size: 25px;
     margin: 0 10px;
+}
+
+.order-item-count {
+    font-size: 20px;
+    font-weight: 500;
 }
 
 .remove-order-item {
@@ -125,8 +137,9 @@ ion-icon {
 }
 
 .order-item-price {
-    flex-basis: 60%;
-    text-align: right
+    flex-basis: 33%;
+    text-align: right;
+    font-weight: 500;
 }
 
 .order-divider {
@@ -169,17 +182,16 @@ ion-icon {
 .green-btn {
     display: flex;
     margin: 0 auto;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 700;
-    padding: 20px 100px 20px 100px;
+    padding: 20px 80px 20px 80px;
     justify-content: center;
     align-items: center;
     border-radius: 1px;
     background: #16DB99;
     color: #ffffff;
     /* shadow/sm */
-    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.08);
     border: none;
 }
 

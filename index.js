@@ -54,19 +54,21 @@ return menuOption
 
 // Adds the order items to the item summary. Originally all on single lines, refactored to provide a counter of each item.
 function updateOrder() {
-        const orderItems = ordersArr.map(function(orderItem) {
+    const orderItems = ordersArr.map(function(orderItem) {
         return `        
         <div class="order-item">
             <h4 class="order-item-title">${orderItem.name}</h4>
+            <div class="quantity-wrapper">
             <ion-icon class="quantity-update" name="remove-circle-outline"
             data-remove=${orderItem.id}></ion-icon>
-            <span>${orderItem.quantity}</span>
+            <span class="order-item-count">${orderItem.quantity}</span>
             <ion-icon class="quantity-update" name="add-circle-outline" 
             data-add=${orderItem.id}></ion-icon>
+            </div>
             <span class="order-item-price">&dollar;${(orderItem.price * orderItem.quantity).toFixed(2)}</span>
         </div>
         `
-    }).join('')
+    }).join('') 
     document.getElementById("added-items").innerHTML = orderItems
 }
 
@@ -75,25 +77,11 @@ function handleRemoveClick(orderItemId) {
     const orderItemObj = ordersArr.filter(orderItem => orderItem.id === +orderItemId)[0]
     orderItemObj.quantity--
     const itemIndex = ordersArr.findIndex(orderItem => orderItem.quantity === 0)
-    // !== -1 means a value has been found
+
     if (itemIndex >= 0) {
         ordersArr.splice(itemIndex, 1); // Remove the item from the order
     }
 }
-
-//COPY OF function handleRemoveClick() removes an item from the ordersArr using the splice method(). This does mutate the original array. 
-//Can reuse with different event handler to remove entire item and possibly order
-// function handleRemoveClick(orderItemId) {
-//     const itemIndex = ordersArr.findIndex((orderItem) => orderItemId === orderItem.id.toString());
-
-//     // !== -1 means a value has been found
-//     if (itemIndex !== -1) {
-//         ordersArr.splice(itemIndex, 1); // Remove the item from the order
-//     }
-// }
-
-
-
 // function handleAddClick() handles checking if item matches id on menuArray, then pushes to ordersArr
 function handleAddClick(menuItemId) {
     const menuItemObj = ordersArr.filter(orderItem => orderItem.id === +menuItemId)
@@ -110,11 +98,6 @@ function handleAddClick(menuItemId) {
             name: menuArray[menuItemId].name,
             price: menuArray[menuItemId].price
         })
-
-    //checking there is an object to push, if not terminates
-    // if (menuItemObj) {
-    // ordersArr.push(menuItemObj)
-    // }
 }
 
 function calculateTotalPrice() {
@@ -199,7 +182,6 @@ function orderSummary() {
         </div>
         <div class="order-divider"></div>
             <div class="order-price-summary" id="order-summary">
-                <span class="remove-order" id="remove-order">Remove Order</span>
                 <h4 class="order-total-title">Total price:</h4>
                 <span class="order-total-price" id="order-total">&dollar;0</span>
              </div>
