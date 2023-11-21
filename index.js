@@ -21,12 +21,17 @@ document.addEventListener(`click`, (e) => {
         displayPaymentModal = !displayPaymentModal //resets the boolean variable displalPaymentModal to false after closing to 
         //prevent the Complete Order button having to be clicked twice to flip the boolean to allow the modal to be displayed again
     }
+    else if (e.target.dataset.pay) {
+        handlePayNowClick(e.target.dataset.pay)
+        //e.preventDefault()
+    }
 })
 
 function runOrderCalls() {
     updateOrder()
     getOrderTotal()
     checkoutBtn()
+    
 }
 
 function createMenu() {
@@ -160,18 +165,29 @@ function handleCompleteOrderClick() {
     <ion-icon name="close-circle" data-close="close" class="modal-close-icon"></ion-icon>
         <div class="modal-container ">
             <h4>Enter Payment Details</h4>
-                <form id="payment-form">
-                    <input name="name" placeholder="Enter your name" type="text" /> 
-                    <input name="card" placeholder="Enter card number" type="text" /> 
-                    <input name="cvv" placeholder="Enter CVV number" type="text" /> 
+                <form id="payment-form" onsubmit="validateForm()">
+                    <input name="name" placeholder="Enter your name" type="text" required /> 
+                    <input name="card" placeholder="Enter card number" type="text" required /> 
+                    <input name="cvv" placeholder="Enter CVV number" type="text" required /> 
+                    <button id="complete-payment" type="submit" class="green-btn" name="pay-btn" data-pay="pay">Pay Now</button>
                 </form>
-                <button id="complete-payment" class="green-btn">Pay Now</button>
+                
         </div>
     </div>
     </div>
     `
     paymentModal.innerHTML = paymentHtml
 }
+
+//function to handle when the Pay Now button is clicked. Form is validated and button disbaled to prevent repeated form submissions. POST method removed from form.
+function handlePayNowClick() {
+        let successMsg = `
+        <div class="payment-success-msg">
+        <p>Thanks </p>
+        </div>
+        `
+        document.getElementById('payment-submitted').innerHTML = successMsg
+    }
 
 // orderSummary() returns the HTML template to be populated with order items when added
 function orderSummary() {
