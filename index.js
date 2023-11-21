@@ -23,7 +23,6 @@ document.addEventListener(`click`, (e) => {
     }
     else if (e.target.dataset.pay) {
         handlePayNowClick(e.target.dataset.pay)
-        //e.preventDefault()
     }
 })
 
@@ -165,7 +164,7 @@ function handleCompleteOrderClick() {
     <ion-icon name="close-circle" data-close="close" class="modal-close-icon"></ion-icon>
         <div class="modal-container ">
             <h4>Enter Payment Details</h4>
-                <form id="payment-form" onsubmit="validateForm()">
+                <form id="payment-form">
                     <input name="name" placeholder="Enter your name" type="text" required /> 
                     <input name="card" placeholder="Enter card number" type="text" required /> 
                     <input name="cvv" placeholder="Enter CVV number" type="text" required /> 
@@ -181,12 +180,22 @@ function handleCompleteOrderClick() {
 
 //function to handle when the Pay Now button is clicked. Form is validated and button disbaled to prevent repeated form submissions. POST method removed from form.
 function handlePayNowClick() {
-        let successMsg = `
-        <div class="payment-success-msg">
-        <p>Thanks </p>
+    const paymentForm = document.getElementById('payment-form')    
+    paymentForm.addEventListener('submit', function(e) {
+        e.preventDefault()
+    })
+    let paymentHtml = `
+        <div class="modal-window" data-modal='modal'>
+        <div class="modal-wrapper" >
+        <ion-icon name="close-circle" data-close="close" class="modal-close-icon"></ion-icon>
+            <div class="modal-container ">
+                <h4>Enter Payment Details</h4>
+                <img src="images/payment-processing.gif" class="payment-process">
+            </div>
+        </div>
         </div>
         `
-        document.getElementById('payment-submitted').innerHTML = successMsg
+        paymentModal.innerHTML = paymentHtml
     }
 
 // orderSummary() returns the HTML template to be populated with order items when added
