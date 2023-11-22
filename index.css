@@ -264,7 +264,7 @@ ion-icon {
 }
 
 .payment-process {
-    width: 50px;
-    margin: 0 auto;
+    display: block;
+    margin: 50px auto;
     text-align: center;
 }

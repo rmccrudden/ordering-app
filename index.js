@@ -189,7 +189,7 @@ function handlePayNowClick() {
         <div class="modal-wrapper" >
         <ion-icon name="close-circle" data-close="close" class="modal-close-icon"></ion-icon>
             <div class="modal-container ">
-                <h4>Enter Payment Details</h4>
+                <h4>Order being processed</h4>
                 <img src="images/payment-processing.gif" class="payment-process">
             </div>
         </div>
@@ -197,6 +197,8 @@ function handlePayNowClick() {
         `
         paymentModal.innerHTML = paymentHtml
     }
+
+    
 
 // orderSummary() returns the HTML template to be populated with order items when added
 function orderSummary() {
