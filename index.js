@@ -194,7 +194,7 @@ function handlePayNowClick() {
         <ion-icon name="close-circle" data-close="close" class="modal-close-icon"></ion-icon>
             <div class="modal-container">
                 <h4>${name}, your order being processed...</h4>
-                <img src="images/icons8-loading.gif" class="payment-process">
+                <img src="/icons8-loading.gif" class="payment-process">
             </div>
         </div>
         </div>
@@ -209,7 +209,7 @@ function handlePayNowClick() {
         <ion-icon name="close-circle" data-close="close" class="modal-close-icon"></ion-icon>
             <div class="modal-container">
                 <h4>Thanks, ${name}! Your order has been processed.</h4>
-                <img src="images/payment-processing.gif" class="payment-process">
+                <img src="/payment-processing.gif" class="payment-process">
             </div>
         </div>
         </div>
