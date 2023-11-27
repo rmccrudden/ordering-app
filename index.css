@@ -237,6 +237,7 @@ ion-icon {
 .modal-container h4 {
     text-align: center;
     margin: 10px 0;
+    padding: 15px;
 }
 
 #payment-form {
@@ -267,4 +268,5 @@ ion-icon {
     display: block;
     margin: 50px auto;
     text-align: center;
+    width: 80px;
 }

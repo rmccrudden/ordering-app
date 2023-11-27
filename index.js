@@ -183,13 +183,17 @@ function handlePayNowClick() {
     const paymentForm = document.getElementById('payment-form')    
     paymentForm.addEventListener('submit', function(e) {
         e.preventDefault()
+
+    const paymentFormData = new FormData(paymentForm)
+    const name = paymentFormData.get('name')
+    console.log(name)
     
     let paymentHtml = `
         <div class="modal-window" data-modal='modal'>
         <div class="modal-wrapper" >
         <ion-icon name="close-circle" data-close="close" class="modal-close-icon"></ion-icon>
-            <div class="modal-container ">
-                <h4>Order being processed</h4>
+            <div class="modal-container">
+                <h4>${name}, your order being processed...</h4>
                 <img src="images/icons8-loading.gif" class="payment-process">
             </div>
         </div>
@@ -201,10 +205,10 @@ function handlePayNowClick() {
     setTimeout(function(){
         let paymentHtml = `
         <div class="modal-window" data-modal='modal'>
-        <div class="modal-wrapper" >
+        <div class="modal-wrapper">
         <ion-icon name="close-circle" data-close="close" class="modal-close-icon"></ion-icon>
-            <div class="modal-container ">
-                <h4>Order Confirmed</h4>
+            <div class="modal-container">
+                <h4>Thanks, ${name}! Your order has been processed.</h4>
                 <img src="images/payment-processing.gif" class="payment-process">
             </div>
         </div>
