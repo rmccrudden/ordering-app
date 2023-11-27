@@ -186,7 +186,6 @@ function handlePayNowClick() {
 
     const paymentFormData = new FormData(paymentForm)
     const name = paymentFormData.get('name')
-    console.log(name)
     
     let paymentHtml = `
         <div class="modal-window" data-modal='modal'>
